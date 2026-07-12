@@ -37,9 +37,17 @@
             <button id="clearFiltersBtn" class="btn secondary">Сбросить фильтры</button>
         </section>
 
+        <!-- НОВЫЙ БЛОК: Моя команда -->
+        <section id="myTeam" class="panel">
+            <h2>Моя команда</h2>
+            <p style="font-size: 14px; margin-bottom: 15px; color: #bbb;">Выберите до 4 персонажей или оставьте слоты пустыми для автоподбора</p>
+            <div id="selectedTeamSlots" class="team-slots"></div>
+            <div id="teamHint" class="team-hint"></div>
+        </section>
+
         <section id="roster" class="panel">
             <h2>Персонажи</h2>
-            <div class="roster-info">Выбрано в команду: <span id="selectedCount">0</span>/4</div>
+            <div class="roster-info" style="display: none;">Выбрано в команду: <span id="selectedCount">0</span>/4</div>
             <div id="characterGrid" class="grid"></div>
         </section>
 
