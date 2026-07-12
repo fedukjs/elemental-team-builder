@@ -15,7 +15,7 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: sans-serif; background: var(--bg-color); color: var(--text-color); padding: 10px; padding-bottom: 60px; }
+body { font-family: sans-serif; background: var(--bg-color); color: var(--text-color); padding: 10px; padding-bottom: 60px; overflow-x: hidden; }
 h1, h2 { margin-bottom: 10px; }
 header, footer { text-align: center; margin-bottom: 15px; }
 footer { margin-top: 30px; font-size: 0.8em; opacity: 0.7; }
@@ -29,15 +29,31 @@ button.btn { cursor: pointer; font-weight: bold; }
 .btn.primary { background: var(--accent-color); color: #000; }
 .btn.secondary { background: #444; }
 
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px; margin-top: 10px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; margin-top: 10px; }
 
 .char-card {
-    background: #2c2c2c; border-radius: var(--border-radius); padding: 10px; text-align: center; position: relative; border: 2px solid transparent; cursor: pointer;
+    background: #2c2c2c; border-radius: var(--border-radius); padding: 12px; text-align: center; position: relative; border: 2px solid transparent; display: flex; flex-direction: column;
 }
 .char-card .avatar { width: 40px; height: 40px; border-radius: 50%; margin: 0 auto 5px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 20px; color: #000; }
-.char-card.owned { border-color: #fff; }
-.char-card.selected { background: #444; border-color: var(--accent-color); }
-.char-card .status { font-size: 10px; margin-top: 5px; color: #aaa; }
+.char-card.owned { border-color: #555; }
+.char-card.selected { background: #3a3a3a; border-color: var(--accent-color); }
+.char-card .status { font-size: 11px; margin-top: 5px; color: #aaa; font-weight: bold; }
+.char-roles { font-size: 11px; color: #bbb; margin: 4px 0; min-height: 28px; }
+
+/* НОВЫЕ СТИЛИ ДЛЯ v0.2 */
+.team-slots { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 10px; }
+.team-slot { background: #2c2c2c; padding: 15px; border-radius: var(--border-radius); text-align: center; display: flex; flex-direction: column; justify-content: center; min-height: 90px; border: 2px solid transparent; }
+.team-slot.empty { border: 2px dashed #555; background: transparent; color: #777; }
+.team-slot-name { font-weight: bold; margin-bottom: 8px; font-size: 14px; }
+.team-slot-actions { display: flex; justify-content: center; }
+.small-btn { padding: 8px 12px; font-size: 14px; border-radius: 4px; border: none; cursor: pointer; background: #e74c3c; color: white; width: auto; margin-bottom: 0; }
+
+.card-actions { display: flex; flex-direction: column; gap: 8px; margin-top: auto; padding-top: 10px; }
+.owned-toggle { background: #3498db; color: white; margin-bottom: 0; padding: 10px; font-size: 14px; }
+.owned-toggle.remove { background: #555; }
+.team-toggle { background: var(--accent-color); color: #000; margin-bottom: 0; padding: 10px; font-size: 14px; font-weight: bold; }
+.team-toggle.remove { background: #e74c3c; color: white; }
+.team-hint { font-size: 13px; color: #aaa; text-align: center; font-style: italic; margin-top: 10px; }
 
 /* Elements */
 .bg-Pyro { background: var(--pyro); } .bg-Hydro { background: var(--hydro); }
