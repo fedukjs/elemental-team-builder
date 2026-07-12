@@ -22,6 +22,8 @@ async function init() {
     try {
         const response = await fetch('data/characters.json');
         characters = await response.json();
+        
+        loadFilters(); // Восстанавливаем фильтры перед отрисовкой
         renderRoster();
         updateSelectionCount();
         setupEventListeners();
@@ -33,6 +35,30 @@ async function init() {
 function saveState() {
     localStorage.setItem('ownedIds', JSON.stringify(ownedIds));
     localStorage.setItem('selectedIds', JSON.stringify(selectedIds));
+}
+
+// Сохранение значений фильтров в localStorage
+function saveFilters() {
+    const filters = {
+        search: dom.searchInput.value,
+        element: dom.elementFilter.value,
+        role: dom.roleFilter.value
+    };
+    localStorage.setItem('filtersState', JSON.stringify(filters));
+}
+
+// Загрузка значений фильтров из localStorage при запуске
+function loadFilters() {
+    const saved = JSON.parse(localStorage.getItem('filtersState'));
+    if (saved) {
+        dom.searchInput.value = saved.search || '';
+        dom.elementFilter.value = saved.element || 'all';
+        dom.roleFilter.value = saved.role || 'all';
+    } else {
+        dom.searchInput.value = '';
+        dom.elementFilter.value = 'all';
+        dom.roleFilter.value = 'all';
+    }
 }
 
 // Отрисовка сетки персонажей
@@ -59,11 +85,10 @@ function renderRoster() {
             <div class="status">${isSelected ? 'В команде' : isOwned ? 'В наличии' : 'Нет'}</div>
         `;
 
-        // Клик: короткий - наличие, долгий (или двойной) - в команду. Для мобилок сделаем проще:
-        // Клик по карточке переключает наличие. Если в наличии - показывает кнопку "В команду"
+        // Клик по карточке переключает наличие
         card.onclick = () => toggleOwned(char.id);
         
-        // Добавим отдельную кнопку для выбора
+        // Кнопка для выбора в команду
         if (isOwned) {
             const selBtn = document.createElement('button');
             selBtn.style.marginTop = '5px';
@@ -85,6 +110,7 @@ function toggleOwned(id) {
     if (ownedIds.includes(id)) {
         ownedIds = ownedIds.filter(i => i !== id);
         selectedIds = selectedIds.filter(i => i !== id); // Убираем из выбранных
+        updateSelectionCount(); // Обновляем счетчик при удалении
     } else {
         ownedIds.push(id);
     }
@@ -253,14 +279,26 @@ function displayResults(topTeams) {
 
 // Обработчики
 function setupEventListeners() {
-    dom.searchInput.addEventListener('input', renderRoster);
-    dom.elementFilter.addEventListener('change', renderRoster);
-    dom.roleFilter.addEventListener('change', renderRoster);
+    dom.searchInput.addEventListener('input', () => {
+        saveFilters();
+        renderRoster();
+    });
+    
+    dom.elementFilter.addEventListener('change', () => {
+        saveFilters();
+        renderRoster();
+    });
+    
+    dom.roleFilter.addEventListener('change', () => {
+        saveFilters();
+        renderRoster();
+    });
     
     dom.clearFltBtn.addEventListener('click', () => {
         dom.searchInput.value = '';
         dom.elementFilter.value = 'all';
         dom.roleFilter.value = 'all';
+        saveFilters();
         renderRoster();
     });
 
