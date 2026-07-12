@@ -1,0 +1,56 @@
+:root {
+    --bg-color: #121212;
+    --panel-bg: #1e1e1e;
+    --text-color: #e0e0e0;
+    --accent-color: #bb86fc;
+    --border-radius: 8px;
+    
+    --pyro: #E25822;
+    --hydro: #2980B9;
+    --cryo: #A0E6FF;
+    --electro: #8E44AD;
+    --anemo: #1ABC9C;
+    --geo: #F1C40F;
+    --dendro: #27AE60;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: sans-serif; background: var(--bg-color); color: var(--text-color); padding: 10px; padding-bottom: 60px; }
+h1, h2 { margin-bottom: 10px; }
+header, footer { text-align: center; margin-bottom: 15px; }
+footer { margin-top: 30px; font-size: 0.8em; opacity: 0.7; }
+
+.panel { background: var(--panel-bg); padding: 15px; border-radius: var(--border-radius); margin-bottom: 15px; }
+.hidden { display: none !important; }
+.center { text-align: center; }
+
+input, select, button { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 4px; border: none; background: #2c2c2c; color: white; font-size: 16px; }
+button.btn { cursor: pointer; font-weight: bold; }
+.btn.primary { background: var(--accent-color); color: #000; }
+.btn.secondary { background: #444; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px; margin-top: 10px; }
+
+.char-card {
+    background: #2c2c2c; border-radius: var(--border-radius); padding: 10px; text-align: center; position: relative; border: 2px solid transparent; cursor: pointer;
+}
+.char-card .avatar { width: 40px; height: 40px; border-radius: 50%; margin: 0 auto 5px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 20px; color: #000; }
+.char-card.owned { border-color: #fff; }
+.char-card.selected { background: #444; border-color: var(--accent-color); }
+.char-card .status { font-size: 10px; margin-top: 5px; color: #aaa; }
+
+/* Elements */
+.bg-Pyro { background: var(--pyro); } .bg-Hydro { background: var(--hydro); }
+.bg-Cryo { background: var(--cryo); } .bg-Electro { background: var(--electro); }
+.bg-Anemo { background: var(--anemo); } .bg-Geo { background: var(--geo); }
+.bg-Dendro { background: var(--dendro); }
+
+/* Team Result */
+.team-result { background: #2c2c2c; padding: 15px; border-radius: var(--border-radius); margin-bottom: 15px; }
+.team-score { font-size: 24px; font-weight: bold; color: var(--accent-color); margin-bottom: 10px; }
+.team-chars { display: flex; gap: 10px; margin-bottom: 10px; }
+.team-char-mini { text-align: center; font-size: 12px; flex: 1; }
+.team-char-mini .avatar { width: 30px; height: 30px; margin: 0 auto; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #000; font-weight: bold;}
+.team-details ul { margin-left: 20px; margin-bottom: 10px; font-size: 14px; }
+.text-green { color: #4ade80; }
+.text-red { color: #f87171; }

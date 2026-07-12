@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elemental Team Builder</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Elemental Team Builder</h1>
+        <p>Подбор команд Genshin Impact</p>
+    </header>
+
+    <main>
+        <section id="filters" class="panel">
+            <h2>Фильтры и поиск</h2>
+            <input type="text" id="searchInput" placeholder="Поиск по имени...">
+            <select id="elementFilter">
+                <option value="all">Все элементы</option>
+                <option value="Pyro">Пиро</option>
+                <option value="Hydro">Гидро</option>
+                <option value="Cryo">Крио</option>
+                <option value="Electro">Электро</option>
+                <option value="Anemo">Анемо</option>
+                <option value="Geo">Гео</option>
+                <option value="Dendro">Дендро</option>
+            </select>
+            <select id="roleFilter">
+                <option value="all">Все роли</option>
+                <option value="Main DPS">Основой урон (Main DPS)</option>
+                <option value="Sub DPS">Внеполевой урон (Sub DPS)</option>
+                <option value="Support">Поддержка (Support)</option>
+                <option value="Healer">Лекарь (Healer)</option>
+                <option value="Shielder">Щитовик (Shielder)</option>
+            </select>
+            <button id="clearFiltersBtn" class="btn secondary">Сбросить фильтры</button>
+        </section>
+
+        <section id="roster" class="panel">
+            <h2>Персонажи</h2>
+            <div class="roster-info">Выбрано в команду: <span id="selectedCount">0</span>/4</div>
+            <div id="characterGrid" class="grid"></div>
+        </section>
+
+        <section id="actions" class="panel center">
+            <button id="buildTeamBtn" class="btn primary">Подобрать команду</button>
+            <button id="clearSelectionBtn" class="btn secondary">Очистить выбор</button>
+        </section>
+
+        <section id="results" class="panel hidden">
+            <h2>Топ-3 команды</h2>
+            <div id="teamsContainer"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Неофициальный фанатский проект. Не связан с HoYoverse.</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
